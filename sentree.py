@@ -4,8 +4,18 @@ import en_core_web_sm
 
 nlp = en_core_web_sm.load()
 
+POS_COLORS = {
+    "NOUN": "cyan",
+    "VERB": "green",
+    "DET": "dim",
+    "ADP": "yellow",
+    "ADJ": "magenta",
+    "ADV": "blue",
+}
+
 def to_rich_tree(token, tree=None):
-    label = f"{token.text}/{token.pos_}/{token.dep_}"
+    color = POS_COLORS.get(token.pos_, "white")
+    label = f"[{color}]{token.text}[/{color}] [dim]{token.pos_}/{token.dep_}[/dim]"
     node = tree.add(label) if tree else RichTree(label)
     for child in token.children:
         to_rich_tree(child, node)
