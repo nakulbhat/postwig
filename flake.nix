@@ -22,6 +22,7 @@
                 ];
                 dependencies = with pkgs.python313Packages; [
                     spacy
+                    rich
                 ];
             };
             pythonEnv = pkgs.python313.withPackages (ps: with ps; [
