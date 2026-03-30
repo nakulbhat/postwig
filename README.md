@@ -9,6 +9,26 @@
 
 ---
 
+### Installation
+
+Nix is needed for installation and dependency management.
+
+**Using `nix develop`**
+```bash
+nix develop
+postwig --help
+```
+
+**Using `nix profile install`**
+
+`nix profile install` makes the binary available everywhere in your shell.
+```bash
+nix profile install .
+# nix profile remove postwig # uninstallation command
+```
+
+
+
 ### Usage
 
 ```bash
