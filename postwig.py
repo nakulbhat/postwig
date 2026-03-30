@@ -34,18 +34,18 @@ def to_dict(token, verbose=False):
     if verbose:
         entry["morph"] = str(token.morph)
         entry["lemma"] = token.lemma_
-        entry["shape"] = token.shape_
     entry["children"] = [to_dict(child, verbose=verbose) for child in token.children]
     return entry
 
 def main():
-    FLAGS = {"-v", "--verbose", "--json", "--tree", "--help"}
+    FLAGS = {"-j", "-t", "-v", "--verbose", "--json", "--tree", "--help"}
     verbose = "-v" in sys.argv or "--verbose" in sys.argv
-    as_json = "--json" in sys.argv
+    as_json = "-j" in sys.argv or "--json" in sys.argv
     show_help = "--help" in sys.argv
     sentence = " ".join(w for w in sys.argv[1:] if w not in FLAGS)
 
-    prog = os.path.splitext(os.path.basename(sys.argv[0]))[0]
+    # prog = os.path.splitext(os.path.basename(sys.argv[0]))[0]
+    prog = "postwig" # simpler to keep in nix
 
     if show_help:
         print(f"Usage: {prog} [options] <sentence>")
