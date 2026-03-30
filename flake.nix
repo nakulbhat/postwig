@@ -30,19 +30,19 @@
                 nltk
                 en_core_web_sm
             ]);
-            sentree = pkgs.writeShellScriptBin "sentree" ''
-                exec ${pythonEnv}/bin/python ${./sentree.py} "$@"
+            postwig = pkgs.writeShellScriptBin "postwig" ''
+                exec ${pythonEnv}/bin/python ${./postwig.py} "$@"
             '';
         in {
-            packages.${system}.default = sentree;
+            packages.${system}.default = postwig;
 
             apps.${system}.default = {
                 type = "app";
-                program = "${sentree}/bin/sentree";
+                program = "${postwig}/bin/postwig";
             };
 
             devShells.${system}.default = pkgs.mkShell {
-                packages = [ sentree ];
+                packages = [ postwig ];
             };
         };
 }
